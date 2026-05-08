@@ -1,0 +1,44 @@
+[
+  {
+    "id": "bukhari",
+    "name": "Sahih al-Bukhari",
+    "short": "Bukhari",
+    "color": "#C9A84C",
+    "bg": "#2A1F08"
+  },
+  {
+    "id": "muslim",
+    "name": "Sahih Muslim",
+    "short": "Muslim",
+    "color": "#4B9FC9",
+    "bg": "#081A2A"
+  },
+  {
+    "id": "abudawud",
+    "name": "Sunan Abu Dawud",
+    "short": "Abu Dawud",
+    "color": "#4BC996",
+    "bg": "#082A1F"
+  },
+  {
+    "id": "tirmidhi",
+    "name": "Jami at-Tirmidhi",
+    "short": "Tirmidhi",
+    "color": "#C94B4B",
+    "bg": "#2A0808"
+  },
+  {
+    "id": "nasai",
+    "name": "Sunan an-Nasa'i",
+    "short": "Nasa'i",
+    "color": "#9B4BC9",
+    "bg": "#1A082A"
+  },
+  {
+    "id": "ibnmajah",
+    "name": "Sunan Ibn Majah",
+    "short": "Ibn Majah",
+    "color": "#C97B4B",
+    "bg": "#2A1208"
+  }
+]
