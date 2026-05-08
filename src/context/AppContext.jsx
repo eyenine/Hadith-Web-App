@@ -18,10 +18,11 @@ export function AppProvider({ children }) {
   useEffect(() => {
     async function loadData() {
       try {
+        const base = import.meta.env.BASE_URL;
         const [colRes, topRes, hadRes] = await Promise.all([
-          fetch('/data/collections.json'),
-          fetch('/data/topics.json'),
-          fetch('/data/hadiths.json')
+          fetch(`${base}data/collections.json`),
+          fetch(`${base}data/topics.json`),
+          fetch(`${base}data/hadiths.json`)
         ]);
         
         const colData = await colRes.json();
