@@ -1,5 +1,6 @@
-import { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { VirtuosoGrid } from "react-virtuoso";
 import { useAppContext } from "../context/AppContext";
 import HadithCard from "../components/HadithCard";
 import Modal from "../components/Modal";
@@ -140,33 +141,34 @@ export default function BrowsePage() {
           <div style={{ fontSize:14 }}>Try different filters or search terms.</div>
         </div>
       ) : (
-        <>
-          <div style={{
-            display:"grid",
-            gridTemplateColumns:"repeat(auto-fill, minmax(340px, 1fr))",
-            gap:16
-          }}>
-            {displayedHadith.map(h => (
-              <HadithCard key={h.id} h={h} collections={collections} topics={topics} langMode={langMode} dark={dark}
+        <VirtuosoGrid
+          useWindowScroll
+          totalCount={filteredHadith.length}
+          components={{
+            List: React.forwardRef(({ style, children, ...props }, ref) => (
+              <div
+                ref={ref}
+                {...props}
+                style={{
+                  ...style,
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+                  gap: 16
+                }}
+              >
+                {children}
+              </div>
+            ))
+          }}
+          itemContent={(index) => {
+            const h = filteredHadith[index];
+            return (
+              <HadithCard h={h} collections={collections} topics={topics} langMode={langMode} dark={dark}
                 bookmarks={bookmarks} onBookmark={toggleBookmark}
                 onOpen={setSelectedHadith} />
-            ))}
-          </div>
-          
-          {hasMore && (
-            <div style={{ textAlign: "center", marginTop: 32 }}>
-              <button onClick={() => setDisplayLimit(l => l + 20)} style={{
-                background: dark ? "#1A3228" : "#EEE8D0",
-                border: `1px solid ${T.border}`,
-                borderRadius: 10, padding: "12px 32px",
-                color: T.text, fontSize: 14, fontFamily: "'Lora', serif",
-                cursor: "pointer", transition: "all 0.2s"
-              }}>
-                Load More Hadith
-              </button>
-            </div>
-          )}
-        </>
+            );
+          }}
+        />
       )}
 
       <Modal
